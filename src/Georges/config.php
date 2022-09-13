@@ -1,6 +1,6 @@
 <?php
 
-namespace  Compleo\Georges;
+namespace  Georges;
 
 Config::write('db.host', '127.0.0.1');
 Config::write('db.port', '3306');

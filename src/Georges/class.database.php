@@ -1,7 +1,6 @@
 <?php
 
-namespace  Compleo\Georges;
-use Compleo\Georges\Config;
+namespace  Georges;
 
 class Database {
     public $pdo;

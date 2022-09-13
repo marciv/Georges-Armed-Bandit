@@ -1,7 +1,7 @@
 <?php
 
-namespace  Compleo\Models;
-use  Compleo\Georges\Database as Database;
+namespace  Georges;
+
 use stdClass;
 use Throwable;
 

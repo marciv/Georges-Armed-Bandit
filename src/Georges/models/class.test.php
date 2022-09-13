@@ -1,8 +1,8 @@
 <?php
 
-namespace  Compleo\Models;
+namespace  Georges;
 
-use Compleo\Models\Model as Model;
+
 // use Throwable;
 
 class Test  extends Model{
