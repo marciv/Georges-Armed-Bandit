@@ -1,0 +1,19 @@
+{
+    "name": "compleo/georges",
+    "description": "Armed Bandit testing solution in PHP",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Compleo\\Georges\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "marciv",
+            "email": "barlot.marc@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
