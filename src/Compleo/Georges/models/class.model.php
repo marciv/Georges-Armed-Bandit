@@ -60,7 +60,7 @@ class Model  {
 
         return $this;
     }
-    
+
     private function convertType($v,$fromType,$toType){
         if($toType == "json"){
             return json_encode($v);
