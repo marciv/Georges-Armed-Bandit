@@ -27,9 +27,5 @@ class Config
 
 
 
-/* table format 
 
-CREATE TABLE `georges`.`test` ( `test_id` INT NOT NULL AUTO_INCREMENT , `start_date` TIMESTAMP NOT NULL , `name` VARCHAR(255) NOT NULL , `description` MEDIUMTEXT NOT NULL , `filters` JSON NOT NULL , `trackin_vars` JSON NOT NULL , `discovery_rate` FLOAT NOT NULL , `options` JSON NOT NULL , `statut` ENUM('on','off','pending') NOT NULL , `variations` JSON NOT NULL , `uri_regex` VARCHAR(255) NOT NULL , PRIMARY KEY (`test_id`)) ENGINE = InnoDB;
-
-*/
 ?>
