@@ -5,7 +5,7 @@ namespace  Georges;
 use stdClass;
 use Throwable;
 
-abstract class Model  {
+class Model  {
 
     private object  $connection;
     private array   $schema;

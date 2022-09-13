@@ -1,12 +1,10 @@
 {
     "name": "compleo/georges",
     "description": "Armed Bandit testing solution in PHP",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "autoload": {
-        "psr-4": {
-            "Georges\\": "src/Georges/"
-        }
+        "classmap": ["src"]
     },
     "authors": [
         {

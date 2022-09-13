@@ -2,7 +2,6 @@
 
 namespace  Georges;
 
-
 // use Throwable;
 
 class Test  extends Model{
