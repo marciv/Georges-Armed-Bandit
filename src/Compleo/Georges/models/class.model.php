@@ -96,8 +96,15 @@ class Model
         }
     }
 
-    public function getList(int $id)
+    public function getList()
     {
+        $sqlQuery      =   "SELECT * FROM `" . $this->tableName . "`";
+        $results = $this->connection->fetch($sqlQuery, []);
+        if (!empty($results[0])) {
+            return $results;
+        } else {
+            return false;
+        }
     }
 
     public function save()
@@ -128,7 +135,14 @@ class Model
         }
     }
 
-    public function delete()
+    public function delete(int $id)
     {
+        if (empty($id)) {
+            return false;
+        }
+
+        $sqlQuery      =   "DELETE FROM `" . $this->tableName . "` WHERE " . $this->tableIndex . " = :id  ";
+        $sqlParameters =   ['id' => $id];
+        return $this->connection->InsertOrUpdate($sqlQuery, $sqlParameters);
     }
 }

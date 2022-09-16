@@ -48,4 +48,5 @@ class Database
         $stmt->execute($sqlParameters);
         return $this->pdo->lastInsertId();
     }
+    
 }
