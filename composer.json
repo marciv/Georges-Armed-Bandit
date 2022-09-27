@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Compleo\\Georges\\" : "src"
+            "Compleo\\Georges\\": "src"
         }
     },
     "authors": [
@@ -15,10 +15,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable" : true,
+    "prefer-stable": true,
     "require": {
-        "php": "^7.3.5|^8.0"        
+        "php": "^7.3.5|^8.0",
+        "illuminate/database": "^5.7"
     }
 }
-
-

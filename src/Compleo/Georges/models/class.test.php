@@ -62,13 +62,7 @@ class Test  extends Model
             "fieldType": "string",
             "type": "string",
             "default":"off"
-        },
-        "variations": {
-            "field": "variations",
-            "fieldType": "json",
-            "type": "array",
-            "default":"[]"
-        },                        
+        },                      
         "uriRegex": {
             "field": "uri_regex",
             "fieldType": "string",

@@ -85,21 +85,18 @@ class Model
         if (empty($id)) {
             return false;
         }
-        $sqlQuery      =   "SELECT * FROM `" . $this->tableName . "` WHERE " . $this->tableIndex . " = :id  ";
-        $sqlParameters =   ['id' => $id];
-        $results = $this->connection->fetch($sqlQuery, $sqlParameters);
+        $sqlParameters =   ['name' => $this->tableIndex, 'agrega' => '=', 'value' => $id];
+        $results = $this->connection->fetch($this->tableName, $sqlParameters);
         if (!empty($results[0])) {
-            return $this->hydrate($results[0]);
+            return $this->hydrate($results);
         } else {
             $this->hydrate();
             return false;
         }
     }
-
     public function getList()
     {
-        $sqlQuery      =   "SELECT * FROM `" . $this->tableName . "`";
-        $results = $this->connection->fetch($sqlQuery, []);
+        $results = $this->connection->fetch($this->tableName);
         if (!empty($results[0])) {
             return $results;
         } else {

@@ -4,47 +4,41 @@ namespace  Compleo\Georges\Models;
 
 // use Throwable;
 
-class Visit extends Model
+class VisitLog extends Model
 {
-    const TABLE_NAME = 'visit';
-    const TABLE_INDEX = 'visit_id';
+    const TABLE_NAME = 'visit_log';
+    const TABLE_INDEX = 'visit_log_id';
     const SCHEMA = '{
-        "visitId": {
+        "visitLogId": {
             "field": "visit_id",
             "fieldType": "int",
             "type": "int",
             "default":null
         },
-        "testId": {
-            "field": "test_id",
-            "fieldType": "int",
-            "type": "int",
-            "default":null
-        },
-        "variationId": {
-            "field": "variation_id",
-            "fieldType": "string",
-            "type": "string",
-            "default":""
-        },
-        "visitDate": {
-            "field": "visit_date",
+        "date": {
+            "field": "date",
             "fieldType": "timestamp",
             "type": "string",
             "default":""
         },
-        "deviceDetected": {
-            "field": "device_detected",
-            "fieldType": "string",
+        "sessionId": {
+            "field": "session_id",
+            "fieldType": "timestamp",
             "type": "string",
             "default":""
         },
-        "visitIp": {
+        "device": {
             "field": "visit_ip",
             "fieldType": "string",
             "type": "string",
             "default":""
-        }            
+        },
+        "visitInformations": {
+            "field": "visit_informations",
+            "fieldType": "json",
+            "type": "array",
+            "default":"[]"
+        },    
     }';
 
     public function __construct($data = [])
