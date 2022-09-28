@@ -13,7 +13,6 @@ class Model
     private string  $tableName;
     private string  $tableIndex;
 
-
     public function __construct(array $data = [], string $schema, string $tableName,  string $tableIndex)
     {
         $this->tableName = $tableName;
@@ -86,14 +85,16 @@ class Model
             return false;
         }
         $sqlParameters =   ['name' => $this->tableIndex, 'agrega' => '=', 'value' => $id];
-        $results = $this->connection->fetch($this->tableName, $sqlParameters);
-        if (!empty($results[0])) {
+        $results = $this->connection->fetch($this->tableName, 1, $sqlParameters);
+        if (!empty($results)) {
             return $this->hydrate($results);
         } else {
             $this->hydrate();
             return false;
         }
     }
+
+
     public function getList()
     {
         $results = $this->connection->fetch($this->tableName);
@@ -112,21 +113,17 @@ class Model
                 $data[$this->schema[$k]['field']] = $this->convertType($v, gettype($v), $this->schema[$k]['fieldType']);
             }
         }
+        $this->index = $this->tableName . 'Id';
+        if (!empty($this->index)) {
 
-        $index = $this->tableName . 'Id';
-        if (!empty($this->$index)) {
-            $sqlQuery = "UPDATE `" . $this->tableName . "` SET  ";
-            foreach ($data as $k => $v) {
-                $sqlQuery .= " $k=:$k,";
-            }
-            $sqlQuery = trim($sqlQuery, ',');
-            $sqlQuery .= " WHERE $this->tableIndex = :$this->tableIndex  ";
+            $whereParameter = [$this->tableIndex => $data[$this->tableIndex]];
             $sqlParameters =  $data;
             echo '<pre>';
-            print_r($sqlQuery);
+            print_r($whereParameter);
+            echo '<br/>';
             print_r($sqlParameters);
             echo '</pre>';
-            return $this->connection->InsertOrUpdate($sqlQuery, $sqlParameters);
+            return $this->connection->updateOrInsert($this->tableName, $whereParameter, $sqlParameters);
         } else {
             echo 'empty table index <br/>';
         }
@@ -138,8 +135,7 @@ class Model
             return false;
         }
 
-        $sqlQuery      =   "DELETE FROM `" . $this->tableName . "` WHERE " . $this->tableIndex . " = :id  ";
-        $sqlParameters =   ['id' => $id];
-        return $this->connection->InsertOrUpdate($sqlQuery, $sqlParameters);
+        $sqlParameters =   ['name' => $this->tableIndex, 'agrega' => '=', 'value' => $id];
+        return $this->connection->delete($this->tableName, $sqlParameters);
     }
 }

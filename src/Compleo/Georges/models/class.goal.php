@@ -17,8 +17,8 @@ class Goal extends Model
         },
         "variationId": {
             "field": "variation_id",
-            "fieldType": "string",
-            "type": "string",
+            "fieldType": "int",
+            "type": "int",
             "default":null
         },
         "createdAt": {

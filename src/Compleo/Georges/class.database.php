@@ -3,7 +3,7 @@
 namespace  Compleo\Georges\Models;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class Database
 {
@@ -60,6 +60,7 @@ class Database
 
     public function fetch(string $table, int $limit = 10000, array $sqlParameters = null)
     {
+        $results = [];
         if (!empty($sqlParameters)) {
             $stmt = $this->DB::table($table)
                 ->where($sqlParameters['name'], $sqlParameters['agrega'], $sqlParameters['value'])
@@ -70,14 +71,30 @@ class Database
                 ->limit($limit)
                 ->get();
         }
-        var_dump($stmt);
+        // var_dump($stmt);
+        foreach (get_object_vars($stmt[0]) as $key => $value) {
+            $results[$key] = $value;
+        }
+        // var_dump($results);
+        return $results;
     }
 
-    public function InsertOrUpdate(string $sqlQuery, array $sqlParameters)
+    public function updateOrInsert(string $table, array $whereParameters, array $sqlParameters)
     {
-        $results    =   [];
-        $stmt       =   $this->pdo->prepare($sqlQuery);
-        $stmt->execute($sqlParameters);
-        return $this->pdo->lastInsertId();
+        $result = @$this->DB::table($table)->where($whereParameters)->update($sqlParameters);
+
+        if (!$result) {
+            $result = @$this->DB::table($table)->insert($sqlParameters);
+        }
+
+        return $result;
+    }
+
+    public function delete(string $table, array $sqlParameters)
+    {
+        $deleted = $this->DB::table($table)
+            ->where($sqlParameters['name'], $sqlParameters['agrega'], $sqlParameters['value'])
+            ->delete();
+        return $deleted;
     }
 }

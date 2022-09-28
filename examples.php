@@ -10,9 +10,10 @@ require __DIR__ . '/vendor/autoload.php';
 $BanditTest = new Test();
 $BanditGoal = new Goal();
 
-// $BanditTest->Get(2);
+var_dump($BanditTest->delete(5));
 
-var_dump($BanditTest->getList());
+
+
 
 
 
