@@ -72,9 +72,12 @@ class Database
                 ->get();
         }
         // var_dump($stmt);
-        foreach (get_object_vars($stmt[0]) as $key => $value) {
-            $results[$key] = $value;
+        if (!empty($stmt[0])) {
+            foreach (get_object_vars($stmt[0]) as $key => $value) {
+                $results[$key] = $value;
+            }
         }
+
         // var_dump($results);
         return $results;
     }
