@@ -10,7 +10,16 @@ require __DIR__ . '/vendor/autoload.php';
 $BanditTest = new Test();
 $BanditGoal = new Goal();
 
-var_dump($BanditTest->delete(5));
+// $BanditTest->startDate = new \DateTime();
+// $BanditTest->name = "test5";
+// $BanditTest->description = "new Test 5";
+// $BanditTest->uriRegex = "/fen/lan/05/";
+
+
+
+
+
+var_dump($BanditTest->Get(6));
 
 
 

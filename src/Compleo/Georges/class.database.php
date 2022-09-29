@@ -84,12 +84,11 @@ class Database
 
     public function updateOrInsert(string $table, array $whereParameters, array $sqlParameters)
     {
-        $result = @$this->DB::table($table)->where($whereParameters)->update($sqlParameters);
-
-        if (!$result) {
+        if (!empty($sqlParameters[$table . '_id'])) {
+            $result = @$this->DB::table($table)->where($whereParameters)->update($sqlParameters);
+        } else {
             $result = @$this->DB::table($table)->insert($sqlParameters);
         }
-
         return $result;
     }
 
