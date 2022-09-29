@@ -3,7 +3,6 @@
 namespace  Compleo\Georges\Models;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Http\Request;
 
 class Database
 {

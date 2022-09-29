@@ -1,6 +1,6 @@
 <?php
 
-namespace  Compleo\Georges\Models;
+namespace Compleo\Georges\Models;
 
 // use Throwable;
 

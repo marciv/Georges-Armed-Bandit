@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Compleo\\Georges\\": "src"
+            "Compleo\\Georges\\": "src/Compleo/Georges/"
         }
     },
     "authors": [
@@ -19,5 +19,10 @@
     "require": {
         "php": "^7.3.5|^8.0",
         "illuminate/database": "^5.7"
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
     }
 }

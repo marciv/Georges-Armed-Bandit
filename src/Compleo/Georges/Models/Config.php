@@ -1,6 +1,6 @@
 <?php
 
-namespace  Compleo\Georges\Models;
+namespace Compleo\Georges\Models;
 
 Config::write('db.host', '127.0.0.1');
 Config::write('db.port', '3306');
@@ -21,5 +21,4 @@ class Config
     {
         self::$confArray[$name] = $value;
     }
-
 }
