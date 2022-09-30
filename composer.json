@@ -18,7 +18,9 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.3.5|^8.0",
-        "illuminate/database": "^5.7"
+        "illuminate/database": "^5.7",
+        "illuminate/http": "^5.7",
+        "twig/twig": "^3.0"
     },
     "config": {
         "allow-plugins": {

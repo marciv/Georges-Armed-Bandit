@@ -2,6 +2,10 @@
 
 use Compleo\Georges\Models\Test;
 
+use Illuminate\Http\Request;
+
+$request = Request::capture();
+
 require __DIR__ . '/vendor/autoload.php';
 
 $BanditTest = new Test();
