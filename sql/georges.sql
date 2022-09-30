@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 29 sep. 2022 à 15:07
--- Version du serveur : 8.0.27
+-- Généré le : ven. 30 sep. 2022 à 09:38
+-- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `goal`;
 CREATE TABLE IF NOT EXISTS `goal` (
-  `goal_id` int NOT NULL AUTO_INCREMENT,
-  `variation_id` int NOT NULL,
+  `goal_id` int(11) NOT NULL AUTO_INCREMENT,
+  `variation_id` int(11) NOT NULL,
   `name` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
   `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `trigger_event` json NOT NULL,
@@ -38,7 +38,21 @@ CREATE TABLE IF NOT EXISTS `goal` (
   `created_at` date NOT NULL,
   PRIMARY KEY (`goal_id`),
   KEY `variation_id` (`variation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `goal_log`
+--
+
+DROP TABLE IF EXISTS `goal_log`;
+CREATE TABLE IF NOT EXISTS `goal_log` (
+  `goal_log_id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `session_id` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`goal_log_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -48,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `goal` (
 
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE IF NOT EXISTS `test` (
-  `test_id` int NOT NULL AUTO_INCREMENT,
+  `test_id` int(11) NOT NULL AUTO_INCREMENT,
   `start_date` timestamp NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -59,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `test` (
   `statut` enum('on','off','pending') COLLATE utf8_unicode_ci NOT NULL,
   `uri_regex` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`test_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `test`
@@ -77,8 +91,8 @@ INSERT INTO `test` (`test_id`, `start_date`, `name`, `description`, `filters`, `
 
 DROP TABLE IF EXISTS `variation`;
 CREATE TABLE IF NOT EXISTS `variation` (
-  `variation_id` int NOT NULL AUTO_INCREMENT,
-  `test_id` int NOT NULL,
+  `variation_id` int(11) NOT NULL AUTO_INCREMENT,
+  `test_id` int(11) NOT NULL,
   `name` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
   `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `uri_regex` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
@@ -86,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `variation` (
   `statut` enum('off','on','pending','') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'on',
   PRIMARY KEY (`variation_id`),
   KEY `test_id` (`test_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `variation`
@@ -103,14 +117,14 @@ INSERT INTO `variation` (`variation_id`, `test_id`, `name`, `description`, `uri_
 
 DROP TABLE IF EXISTS `visit_log`;
 CREATE TABLE IF NOT EXISTS `visit_log` (
-  `visit_id` int NOT NULL AUTO_INCREMENT,
+  `visit_id` int(11) NOT NULL AUTO_INCREMENT,
   `variation_id` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
   `session_id` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `device` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
   `visit_information` json NOT NULL,
   PRIMARY KEY (`visit_id`),
   KEY `variation_id` (`variation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
