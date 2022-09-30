@@ -7,9 +7,15 @@ use  Compleo\Georges\Models\View;
 
 class Controller
 {
+    public static $dirName = "";
 
-    public static function createView($viewName)
+    public static function setDirName(string $dirName)
     {
-        View::renderTemplate("$viewName/$viewName.php", []);
+        self::$dirName = $dirName;
+    }
+
+    public static function createView(string $viewName, array $arg = [])
+    {
+        View::renderTemplate(self::$dirName . "/$viewName.php.twig", $arg);
     }
 }
