@@ -4,7 +4,9 @@
     "type": "library",
     "license": "MIT",
     "autoload": {
-        "classmap": ["src"]
+        "psr-4": {
+            "Compleo\\Georges\\": "src/Compleo/Georges/"
+        }
     },
     "authors": [
         {
@@ -13,9 +15,16 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable" : true,
+    "prefer-stable": true,
     "require": {
-        "php": "^7.4.26|^8.0",
-        "illuminate/http": "^8.83"        
+        "php": "^7.3.5|^8.0",
+        "illuminate/database": "^5.7",
+        "illuminate/http": "^5.7",
+        "twig/twig": "^3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
     }
 }

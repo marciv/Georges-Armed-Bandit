@@ -1,13 +1,14 @@
 <?php
 
-namespace  Georges;
+namespace Compleo\Georges\Models;
 
 // use Throwable;
 
-class Test  extends Model{
-    CONST TABLE_NAME = 'test';
-    CONST TABLE_INDEX = 'test_id';
-    CONST SCHEMA = '{
+class Test  extends Model
+{
+    const TABLE_NAME = 'test';
+    const TABLE_INDEX = 'test_id';
+    const SCHEMA = '{
         "testId": {
             "field": "test_id",
             "fieldType": "int",
@@ -61,13 +62,7 @@ class Test  extends Model{
             "fieldType": "string",
             "type": "string",
             "default":"off"
-        },
-        "variations": {
-            "field": "variations",
-            "fieldType": "json",
-            "type": "array",
-            "default":"[]"
-        },                        
+        },                      
         "uriRegex": {
             "field": "uri_regex",
             "fieldType": "string",
@@ -76,13 +71,8 @@ class Test  extends Model{
         }                        
     }';
 
-    public function __construct($data = []){
-        parent::__construct($data,Test::SCHEMA,Test::TABLE_NAME,Test::TABLE_INDEX);
+    public function __construct($data = [])
+    {
+        parent::__construct($data, Test::SCHEMA, Test::TABLE_NAME, Test::TABLE_INDEX);
     }
-
 }
-
-
-
-?>
-
