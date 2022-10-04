@@ -3,6 +3,8 @@
 namespace  Compleo\Georges\Models;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Dotenv\Dotenv;
+use Throwable;
 
 class Database
 {
@@ -11,17 +13,18 @@ class Database
 
     private function __construct()
     {
+        $dotenv = Dotenv::createImmutable(__DIR__.'/../../../..');
+        $dotenv->load();
         $this->DB = new Capsule;
-
         $this->DB->addConnection([
-            'driver'    => 'mysql',
-            'host'      => Config::read('db.host'),
-            'database'  => Config::read('db.basename'),
-            'username'  => Config::read('db.user'),
-            'password'  => Config::read('db.password'),
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
+            'driver'    => $_ENV['DB_DRIVER'],
+            'host'      => $_ENV['DB_HOST'],
+            'port'      => $_ENV['DB_PORT'],
+            'database'  => $_ENV['DB_NAME'],
+            'username'  => $_ENV['DB_USER'],
+            'password'  => $_ENV['DB_PASSWORD'],
+            'charset'   => $_ENV['DB_CHARSET'],
+            'collation' => $_ENV['DB_COLLATION']
         ]);
 
         // Make this Capsule instance available globally via static methods... (optional)
