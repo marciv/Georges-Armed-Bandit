@@ -1,8 +1,8 @@
 <?php
 
-namespace  Compleo\Georges\Controllers;
+namespace  Georges\Controllers;
 
-use  Compleo\Georges\Models\View;
+use  Georges\Models\View;
 
 
 class Controller

@@ -1,22 +1,22 @@
 <?php
 
-namespace Compleo\Georges\Models;
+namespace Georges\Models;
 
 // use Throwable;
 
-class Variation  extends Model
+class Goal extends Model
 {
-    const TABLE_NAME = 'variation';
-    const TABLE_INDEX = 'variation_id';
+    const TABLE_NAME = 'goal';
+    const TABLE_INDEX = 'goal_id';
     const SCHEMA = '{
-        "variationId": {
-            "field": "variation_id",
+        "goalId": {
+            "field": "goal_id",
             "fieldType": "int",
             "type": "int",
             "default":null
         },
-        "testId": {
-            "field": "test_id",
+        "variationId": {
+            "field": "variation_id",
             "fieldType": "int",
             "type": "int",
             "default":null
@@ -39,28 +39,22 @@ class Variation  extends Model
             "type": "string",
             "default":""
         },
-        "uriRegex": {
-            "field": "uri_regex",
-            "fieldType": "string",
-            "type": "string",
-            "default":""
-        },
-        "parameters": {
-            "field": "parameters",
+        "triggerEvent": {
+            "field": "trigger_event",
             "fieldType": "json",
             "type": "array",
             "default":"[]"
         },
-        "statut": {
-            "field": "statut",
+        "triggerUrl": {
+            "field": "trigger_url",
             "fieldType": "string",
             "type": "string",
-            "default":"off"
-        }                 
+            "default":""
+        }            
     }';
 
     public function __construct($data = [])
     {
-        parent::__construct($data, Variation::SCHEMA, Variation::TABLE_NAME, Variation::TABLE_INDEX);
+        parent::__construct($data, Goal::SCHEMA, Goal::TABLE_NAME, Goal::TABLE_INDEX);
     }
 }

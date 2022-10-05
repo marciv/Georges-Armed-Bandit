@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Compleo\\Georges\\": "src/Compleo/Georges/"
+            "Georges\\": "src"
         }
     },
     "authors": [

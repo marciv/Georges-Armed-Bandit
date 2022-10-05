@@ -1,6 +1,6 @@
 <?php
 
-namespace  Compleo\Georges\Controllers;
+namespace  Georges\Controllers;
 
 
 class Test extends Controller
