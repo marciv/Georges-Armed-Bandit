@@ -7,6 +7,15 @@ use  Georges\Models\View;
 
 class Controller
 {
+
+    private $_httpRequest;
+    private $_param;
+    
+    public function __construct($httpRequest)
+    {
+        $this->_httpRequest = $httpRequest;
+    }
+
     public static $dirName = "";
 
     public static function setDirName(string $dirName)
@@ -18,4 +27,9 @@ class Controller
     {
         View::renderTemplate(self::$dirName . "/$viewName.php.twig", $arg);
     }
+
+    public function bindManager()
+    {
+        
+    }        
 }

@@ -5,14 +5,21 @@ use Illuminate\Http\Request;
 
 class HttpRequest
 {
-	public	 	$url;
-	public		$method;
-	public	 	$param;
-	public 		$request;
+
+	private	 	$_param;
+	private	 	$_paramAll;
+	private	 	$_method;
+	private	 	$_route;
+	public		$request;
 	
 	function __construct()
 	{
 		$this->request= Request::capture();
+		$this->_method = $this->request->method();
+		$this->_param = array();
+		$this->_paramAll = $this->request->all();
+		$this->bindParam();
+
 	}
 	
 	public function getUrl()
@@ -22,17 +29,46 @@ class HttpRequest
 
 	public function getPath()
 	{
-		return  $this->request->path();	
+		return '/'.ltrim($this->request->path(),"/");
 	}	
 	
 	public function getMethod()
 	{
-		return  $this->request->method();
+		return  $this->_method;
 	}
 	
 	public function getParams()
 	{
-		return $this->request->all();
+		return $this->_param;
 	}
+
+	public function setRoute($route)
+	{
+		$this->_route = $route;	
+	}
+	
+	public function bindParam()
+	{
+		switch($this->_method){
+			case "GET":
+			case "DELETE":							
+				$this->_param=$this->request->query();
+			break;
+			case "POST":
+			case "PUT":
+				$this->_param=$this->request->post();
+			break;
+		}
+	}
+	public function getRoute()
+	{
+		return $this->_route;	
+	}
+	
+	public function run()
+	{
+		$this->bindParam();
+		$this->_route->run($this);
+	}	
 	
 }

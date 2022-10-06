@@ -3,8 +3,10 @@
 namespace  Georges\Models;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Dotenv\Dotenv;
 use Throwable;
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__.'/../Config/');
+$dotenv->load();
 
 class Database
 {
@@ -13,8 +15,6 @@ class Database
 
     private function __construct()
     {
-        $dotenv = Dotenv::createImmutable(__DIR__.'/../../../..');
-        $dotenv->load();
         $this->DB = new Capsule;
         $this->DB->addConnection([
             'driver'    => $_ENV['DB_DRIVER'],

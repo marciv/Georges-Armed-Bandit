@@ -6,24 +6,17 @@
 	"param" : []
 },
 {
-	"path" : "/Login",
+	"path" : "/login.*",
 	"controller" : "Home",
-	"action" : "Login",
+	"action" : "Home",
 	"method" : "GET",
 	"param" : []
 },
 {
-	"path" : "/Login",
+	"path" : "/login",
 	"controller" : "Home",
-	"action" : "Authenticate",
+	"action" : "Home",
 	"method" : "POST",
-	"param" : []
-},
-{
-	"path" : "*",
-	"controller" : "CathAll",
-	"action" : "",
-	"method" : "",
 	"param" : []
 }
 ]
