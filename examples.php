@@ -1,31 +1,22 @@
 <?php
 
-use Compleo\Georges\Models\Test;
-
-use Illuminate\Http\Request;
-
-$request = Request::capture();
+use Georges\Models\Test;
+use Georges\Models\Goal;
+use Georges\Framework\HttpRequest;
+use Georges\Framework\Route;
+use Georges\Framework\Router;
+use Georges\Framework\Controller;
 
 require __DIR__ . '/vendor/autoload.php';
 
 $BanditTest = new Test();
-
-// $BanditTest->startDate = new \DateTime();
-// $BanditTest->name = "test5";
-// $BanditTest->description = "new Test 5";
-// $BanditTest->uriRegex = "/fen/lan/05/";
-
-
-
-
-
 var_dump($BanditTest->Get(6));
 
 
+$httpRequest = new HttpRequest();
+$router = new Router();
+$findRoute = $router->findRoute($httpRequest);
+// print_r($findRoute);
+$httpRequest->setRoute($findRoute);
+$return = $httpRequest->run();
 
-
-
-
-// $BanditTest->description = "alooooooooooooooooooo";
-// $BanditTest->Save();
-// var_dump($BanditTest->description);
