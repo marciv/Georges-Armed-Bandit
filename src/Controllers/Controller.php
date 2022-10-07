@@ -10,7 +10,7 @@ class Controller
 
     private $_httpRequest;
     private $_param;
-    
+
     public function __construct($httpRequest)
     {
         $this->_httpRequest = $httpRequest;
@@ -25,11 +25,10 @@ class Controller
 
     public static function createView(string $viewName, array $arg = [])
     {
-        View::renderTemplate(self::$dirName . "/$viewName.php.twig", $arg);
+        View::renderTemplate(self::$dirName . "/$viewName.html.twig", $arg);
     }
 
     public function bindManager()
     {
-        
-    }        
+    }
 }

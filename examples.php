@@ -9,8 +9,8 @@ use Georges\Framework\Controller;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$BanditTest = new Test();
-var_dump($BanditTest->Get(6));
+// $BanditTest = new Test();
+// var_dump($BanditTest->Get(6));
 
 
 $httpRequest = new HttpRequest();
@@ -19,4 +19,3 @@ $findRoute = $router->findRoute($httpRequest);
 // print_r($findRoute);
 $httpRequest->setRoute($findRoute);
 $return = $httpRequest->run();
-
