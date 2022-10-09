@@ -25,7 +25,7 @@ class Controller
 
     public static function createView(string $viewName, array $arg = [])
     {
-        View::renderTemplate(self::$dirName . "/$viewName.html.twig", $arg);
+        View::renderTemplate(self::$dirName . "/$viewName.html", $arg);
     }
 
     public function bindManager()
