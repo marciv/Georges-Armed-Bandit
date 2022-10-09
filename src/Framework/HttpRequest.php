@@ -10,8 +10,7 @@ class HttpRequest
     private         $_param;
     private         $_paramAll;
     private         $_method;
-    private         $_route;
-    public        $request;
+    public          $request;
 
     function __construct()
     {
@@ -57,18 +56,9 @@ class HttpRequest
             case "POST":
             case "PUT":
                 $this->_param = $this->request->post();
-                break;
+                break;                
         }
     }
-    public function getRoute()
-    {
-        return $this->_route;
-    }
 
-    public function run()
-    {
-        $this->bindParam();
-        // var_dump($this);
-        $this->_route->run($this);
-    }
+
 }

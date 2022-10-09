@@ -2,8 +2,7 @@
 
 namespace  Georges\Framework;
 
-use Georges\Framework\Exceptions\ViewNotFoundException;
-use  Georges\Models\View;
+use  Georges\Framework\View;
 
 class Controller
 {
@@ -24,13 +23,10 @@ class Controller
 
     public static function view(string $viewName, array $_param = [])
     {
-        echo self::$dirName . "/$viewName.html";
 
-        // if (file_exists(self::$dirName . "/$viewName.html.twig")) {
+
+
         View::renderTemplate(self::$dirName . "/$viewName.html", $_param);
-        // } else {
-        //     throw new ViewNotFoundException();
-        // }
     }
 
     public function addParam($name, $value)

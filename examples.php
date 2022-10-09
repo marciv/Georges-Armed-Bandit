@@ -14,8 +14,11 @@ require __DIR__ . '/vendor/autoload.php';
 
 
 $httpRequest = new HttpRequest();
-$router = new Router();
-$findRoute = $router->findRoute($httpRequest);
-// print_r($findRoute);
-$httpRequest->setRoute($findRoute);
-$return = $httpRequest->run();
+$router = new Router($httpRequest);
+use Georges\Controllers\Home;
+$router::get('/','Home','home');
+// echo '<pre>';
+// $listRoute = $router->getListRoute();
+// print_r($listRoute);
+// echo '</pre>';
+$router->run();

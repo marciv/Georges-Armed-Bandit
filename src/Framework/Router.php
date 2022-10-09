@@ -12,21 +12,54 @@ $dotenv->load();
 	class Router
 	{
 
-		private static $listRoute;
+		public static $listRoute;
+		private $_httpRequest;
+		private $_route;
 		
-		public function __construct()
+		public function __construct($httpRequest)
 		{
-			$stringRoute = file_get_contents(__DIR__.'/../Config/route.json');
+			$routeFilePath = __DIR__.'/../Config/route.json';
+			if(file_exists($routeFilePath)){
+				$stringRoute = file_get_contents($routeFilePath);			
+				self::$listRoute = json_decode($stringRoute);
+			}
 			
-			self::$listRoute = json_decode($stringRoute);
+			$this->_httpRequest = $httpRequest ;
+
 		}
 
-        public static function addRoute($route){
-            self::$listRoute[] = $route;
+		public static function addRoute($method,$args){
+			$routeArray['path']			=$args[0];
+			$routeArray['controller']	=$args[1];
+			$routeArray['action']		=$args[2];
+			$routeArray['param']		=$args[3] ?? [];
+			$routeArray['method']		='GET';			
+			self::$listRoute[] = (object)($routeArray);
         }
-		
-		public function findRoute($httpRequest)
+
+		public static function get(...$args){			
+			Router::addRoute('GET',$args);
+		} 
+
+
+		public function setRoute($route)
 		{
+			$this->_route = $route;
+		}
+		
+		public function getRoute()
+		{
+			return $this->_route;
+		}
+		
+		public function getListRoute()
+		{
+			return self::$listRoute;
+		}			
+		
+		public function findRoute()
+		{
+			$httpRequest = $this->_httpRequest;
 			$routeFound = array_filter(self::$listRoute,function($route) use ($httpRequest){
 				$return = preg_match("#^" . $route->path . "$#", $httpRequest->getPath()) && $route->method == $httpRequest->getMethod();
                 return $return;
@@ -42,7 +75,16 @@ $dotenv->load();
 			}
 			else
 			{       
-				return new Route(array_shift($routeFound));	
+				$route = new Route(array_shift($routeFound));	
+				$this->setRoute($route);
 			}
 		}
+
+		public function run()
+		{
+			$this->findRoute();
+			$this->_httpRequest->bindParam();
+			$this->_route->run($this->_httpRequest);
+		}
+
 	}
