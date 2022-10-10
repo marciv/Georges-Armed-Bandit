@@ -13,6 +13,21 @@ class Home extends Controller
         $params['age'] = '12 ans';
         $params['civ'] = 'M';
         self::setDirName("Home");
+        // redirect("test");
         self::view('index', $params);
+    }
+
+    public function redirectPage($params)
+    {
+        $params['name'] = 'Marc';
+        $params['age'] = '12 ans';
+        $params['civ'] = 'M';
+        redirect("1root/library/Georges-armed-bandit/examples.php/redirected", "", $params);
+    }
+
+    public function redirectedHere($params)
+    {
+        self::setDirName("Home");
+        self::view('test', $params);
     }
 }

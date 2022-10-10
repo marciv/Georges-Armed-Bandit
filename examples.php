@@ -12,11 +12,14 @@ require __DIR__ . '/vendor/autoload.php';
 // $BanditTest = new Test();
 // var_dump($BanditTest->Get(6));
 
-
 $httpRequest = new HttpRequest();
 $router = new Router($httpRequest);
-use Georges\Controllers\Home;
-$router::get('/','Home','home');
+
+$router::get('/', 'Home', 'home');
+$router::get('/redirect', 'Home', 'redirectPage');
+$router::get('/redirected', 'Home', 'redirectedHere');
+
+
 // echo '<pre>';
 // $listRoute = $router->getListRoute();
 // print_r($listRoute);
