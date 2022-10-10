@@ -1,5 +1,5 @@
 [{
-	"path" : "/",
+	"path" : "/tetee",
 	"controller" : "Home",
 	"action" : "Home",
 	"method" : "GET",

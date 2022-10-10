@@ -8,17 +8,14 @@ class HttpRequest
 {
 
     private         $_param;
-    private         $_paramAll;
     private         $_method;
-    private         $_route;
-    public        $request;
+    public          $request;
 
     function __construct()
     {
         $this->request = Request::capture();
         $this->_method = $this->request->method();
         $this->_param = array();
-        $this->_paramAll = $this->request->all();
         $this->bindParam();
     }
 
@@ -47,28 +44,22 @@ class HttpRequest
         $this->_route = $route;
     }
 
-    public function bindParam()
+    public function bindParam($method = "ALL")
     {
-        switch ($this->_method) {
-            case "GET":
-            case "DELETE":
-                $this->_param = $this->request->query();
-                break;
-            case "POST":
-            case "PUT":
-                $this->_param = $this->request->post();
-                break;
+        switch ($method) {
+        case "GET":
+        case "DELETE":
+            $this->_param = $this->request->query();
+        break;
+        case "POST":
+        case "PUT":
+            $this->_param = $this->request->post();
+        break;
+        case "ALL":
+            $this->_param = $this->request->all();
+        break;                                  
         }
     }
-    public function getRoute()
-    {
-        return $this->_route;
-    }
 
-    public function run()
-    {
-        $this->bindParam();
-        // var_dump($this);
-        $this->_route->run($this);
-    }
+
 }

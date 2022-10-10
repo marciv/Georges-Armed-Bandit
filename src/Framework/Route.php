@@ -12,16 +12,15 @@ class Route
     private $_action;
     private $_method;
     private $_param;
-    private $_manager;
 
-    public function __construct($route)
+
+    public function __construct($route = null)
     {
         $this->_path = $route->path;
         $this->_controller = $route->controller;
         $this->_action = $route->action;
         $this->_method = $route->method;
         $this->_param = $route->param ?? [];
-        $this->_manager = $route->manager ?? null;
     }
 
     public function getPath()
@@ -49,20 +48,14 @@ class Route
         return $this->_param;
     }
 
-    // public function getManager()
-    // {
-    // 	return $this->_manager;
-    // }
-
     public function run($httpRequest)
     {
         $controller = null;
         $controllerName = 'Georges\\Controllers\\' . $this->_controller;
         if (class_exists($controllerName)) {
-
             $controller = new $controllerName($httpRequest);
             if (method_exists($controller, $this->_action)) {
-                $controller->{$this->_action}($httpRequest->getParams());
+                $controller->{$this->_action}(array_merge($httpRequest->getParams(),$this->getParam()));
             } else {
                 throw new ActionNotFoundException();
             }
