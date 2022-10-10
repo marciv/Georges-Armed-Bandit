@@ -53,10 +53,9 @@ class Route
         $controller = null;
         $controllerName = 'Georges\\Controllers\\' . $this->_controller;
         if (class_exists($controllerName)) {
-
             $controller = new $controllerName($httpRequest);
             if (method_exists($controller, $this->_action)) {
-                $controller->{$this->_action}($httpRequest->getParams());
+                $controller->{$this->_action}(array_merge($httpRequest->getParams(),$this->getParam()));
             } else {
                 throw new ActionNotFoundException();
             }

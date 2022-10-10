@@ -15,6 +15,7 @@ $dotenv->load();
 		public static $listRoute;
 		private $_httpRequest;
 		private $_route;
+
 		
 		public function __construct($httpRequest)
 		{
@@ -33,15 +34,26 @@ $dotenv->load();
 			$routeArray['controller']	=$args[1];
 			$routeArray['action']		=$args[2];
 			$routeArray['param']		=$args[3] ?? [];
-			$routeArray['method']		='GET';			
+			$routeArray['method']		=$method;			
 			self::$listRoute[] = (object)($routeArray);
         }
 
 		public static function get(...$args){			
 			Router::addRoute('GET',$args);
-		} 
-
-
+		}
+		public static function post(...$args){			
+			Router::addRoute('POST',$args);
+		}
+		public static function put(...$args){			
+			Router::addRoute('PUT',$args);
+		}
+		public static function delete(...$args){			
+			Router::addRoute('DELETE',$args);
+		}
+		public static function all(...$args){			
+			Router::addRoute('ALL',$args);
+		}
+		
 		public function setRoute($route)
 		{
 			$this->_route = $route;
@@ -61,7 +73,7 @@ $dotenv->load();
 		{
 			$httpRequest = $this->_httpRequest;
 			$routeFound = array_filter(self::$listRoute,function($route) use ($httpRequest){
-				$return = preg_match("#^" . $route->path . "$#", $httpRequest->getPath()) && $route->method == $httpRequest->getMethod();
+				$return = preg_match("#^" . $route->path . "$#", $httpRequest->getPath()) && ($route->method == $httpRequest->getMethod() || $route->method =="ALL");
                 return $return;
 			});
 			$numberRoute = count($routeFound);
@@ -83,7 +95,7 @@ $dotenv->load();
 		public function run()
 		{
 			$this->findRoute();
-			$this->_httpRequest->bindParam();
+			$this->_httpRequest->bindParam($this->_route->getMethod());
 			$this->_route->run($this->_httpRequest);
 		}
 

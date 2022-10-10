@@ -16,6 +16,7 @@ class Controller
         $this->_httpRequest = $httpRequest;
     }
 
+
     public static function setDirName(string $dirName)
     {
         self::$dirName = $dirName;
