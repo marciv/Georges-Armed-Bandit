@@ -16,6 +16,10 @@ $httpRequest = new HttpRequest();
 $router = new Router($httpRequest);
 
 $router::get('/', 'Home', 'home');
+$router::get('/tests', 'Test', 'home');
+
+
+
 $router::get('/redirect', 'Home', 'redirectPage');
 $router::get('/redirected', 'Home', 'redirectedHere');
 

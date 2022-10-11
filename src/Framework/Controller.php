@@ -24,10 +24,7 @@ class Controller
 
     public static function view(string $viewName, array $_param = [])
     {
-
-
-
-        View::renderTemplate(self::$dirName . "/$viewName.html", $_param);
+        View::renderTemplate(self::$dirName . "/$viewName.php", $_param);
     }
 
     public function addParam($name, $value)

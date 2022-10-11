@@ -95,10 +95,10 @@ class Model
     }
 
 
-    public function getList()
+    public function getList(int $limit = 10000, array $sqlParameters = null, array $jointure = null, string $anotherSql = "")
     {
-        $results = $this->connection->fetch($this->tableName);
-        if (!empty($results[0])) {
+        $results = $this->connection->fetch($this->tableName, $limit, $sqlParameters, $jointure, $anotherSql);
+        if (!empty($results)) {
             return $results;
         } else {
             return false;

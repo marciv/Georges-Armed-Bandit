@@ -13,7 +13,6 @@ class Home extends Controller
         $params['age'] = '12 ans';
         $params['civ'] = 'M';
         self::setDirName("Home");
-        // redirect("test");
         self::view('index', $params);
     }
 

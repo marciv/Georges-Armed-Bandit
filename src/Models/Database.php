@@ -5,7 +5,8 @@ namespace  Georges\Models;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Throwable;
 use Dotenv\Dotenv;
-$dotenv = Dotenv::createImmutable(__DIR__.'/../Config/');
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../Config/');
 $dotenv->load();
 
 class Database
@@ -60,10 +61,17 @@ class Database
         return self::$instance;
     }
 
-    public function fetch(string $table, int $limit = 10000, array $sqlParameters = null)
+    public function fetch(string $table, int $limit, array $sqlParameters = null, array $jointure = null, string $anotherSql = '')
     {
         $results = [];
-        if (!empty($sqlParameters)) {
+        if (!empty($sqlParameters) && !empty($jointure)) {
+            $stmt = $this->DB::table($table)
+                ->where($sqlParameters['name'], $sqlParameters['agrega'], $sqlParameters['value'])
+                ->leftjoin($jointure['table'], $jointure['firstColumn'], $jointure['agrega'], $jointure['secondColumn'])
+                ->select($this->DB::raw($anotherSql))
+                ->limit($limit)
+                ->get();
+        } else if (!empty($sqlParameters)) {
             $stmt = $this->DB::table($table)
                 ->where($sqlParameters['name'], $sqlParameters['agrega'], $sqlParameters['value'])
                 ->limit($limit)
@@ -73,13 +81,14 @@ class Database
                 ->limit($limit)
                 ->get();
         }
-        // var_dump($stmt);
         if (!empty($stmt[0])) {
-            foreach (get_object_vars($stmt[0]) as $key => $value) {
-                $results[$key] = $value;
+            for ($i = 0; $i < count($stmt); $i++) {
+                foreach (get_object_vars($stmt[$i]) as $key => $value) {
+                    $result[$key] = $value;
+                }
+                array_push($results, $result);
             }
         }
-
         // var_dump($results);
         return $results;
     }

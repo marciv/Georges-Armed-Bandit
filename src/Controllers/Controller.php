@@ -25,7 +25,7 @@ class Controller
 
     public static function createView(string $viewName, array $arg = [])
     {
-        View::renderTemplate(self::$dirName . "/$viewName.html", $arg);
+        View::renderTemplate(self::$dirName . "/$viewName.php", $arg);
     }
 
     public function bindManager()
