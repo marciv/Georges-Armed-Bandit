@@ -75,4 +75,9 @@ class Test  extends Model
     {
         parent::__construct($data, Test::SCHEMA, Test::TABLE_NAME, Test::TABLE_INDEX);
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

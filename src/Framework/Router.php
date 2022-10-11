@@ -3,6 +3,7 @@
 namespace Georges\Framework;
 use Georges\Framework\Exceptions\MultipleRouteFoundException;
 use Georges\Framework\Exceptions\NoRouteFoundException;
+use Georges\Framework\Exceptions\MiddlewareNotFoundException;
 use Georges\Framework\Route;
 
 use Dotenv\Dotenv;
@@ -53,6 +54,27 @@ $dotenv->load();
 		public static function all(...$args){			
 			Router::addRoute('ALL',$args);
 		}
+
+		public function use($path,...$middlewares)
+		{	
+			$httpRequest = $this->_httpRequest;
+			if(preg_match("#^" . $path . "$#", $httpRequest->getPath()))	{
+				foreach($middlewares as $middleware){
+						if(is_callable($middleware)){
+							$return = $middleware($this->_httpRequest);
+							if(is_string($middleware)){
+								$this->_httpRequest->{$middleware}=$return;
+							} else {
+								$this->_httpRequest->closure[]=$return;
+							}
+							if(!$return or empty($return)){break;}
+						} else {
+							throw new MiddlewareNotFoundException('function '.$middleware.' not found');
+						}
+					// }
+				}
+			}	
+		}		
 		
 		public function setRoute($route)
 		{

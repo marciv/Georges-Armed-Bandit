@@ -86,8 +86,8 @@ class Model
         }
         $sqlParameters =   ['name' => $this->tableIndex, 'agrega' => '=', 'value' => $id];
         $results = $this->connection->fetch($this->tableName, 1, $sqlParameters);
-        if (!empty($results)) {
-            return $this->hydrate($results);
+        if (!empty($results[0])) {
+            return $this->hydrate($results[0]);
         } else {
             $this->hydrate();
             return false;
