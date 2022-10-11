@@ -40,8 +40,6 @@ class Model
 
     public function hydrate(array $data = [])
     {
-
-
         foreach ($this->schema as $property => $propertySet) {
             if (!empty($data[$propertySet['field']])) {
                 $value  = $data[$propertySet['field']];
@@ -58,7 +56,6 @@ class Model
                 $this->$property = $default_value;
             }
         }
-
         return $this;
     }
 

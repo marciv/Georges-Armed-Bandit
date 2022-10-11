@@ -8,7 +8,7 @@ class View
 {
     protected static $startSearch = "{{";
     protected static $endSearch = "}}";
-    protected static string $title;
+    protected static string $title = "";
 
     protected static array $css = [];
     protected static array $js = [];

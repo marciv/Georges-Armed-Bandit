@@ -3,6 +3,11 @@ a {
   color: initial;
 }
 
+.container {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
 .card-container {
   display: flex;
   align-items: center;
@@ -11,7 +16,7 @@ a {
 }
 
 .card {
-  padding: 10px;
+  padding: 5px;
   margin: 15px;
   font-size: 24px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
