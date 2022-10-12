@@ -1,31 +1,93 @@
+body {
+  display: flex;
+  padding-top: 30px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 a {
   text-decoration: none;
-  color: initial;
+  color: black;
 }
 
-.container {
-  max-width: 1150px;
-  margin: 0 auto;
+a:hover {
+  color: black;
+}
+.main-george {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 20px 50px;
 }
 
-.card-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin: 0 auto;
+.main-george h1 {
+  font-size: 35px;
+  font-family: Nunito;
 }
 
 .card {
-  padding: 5px;
-  margin: 15px;
-  font-size: 24px;
+  max-width: 550px;
+  margin: 20px 20px;
+  border: none;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.text-bold {
-  font-weight: bolder;
+.card-archived,
+.disabled {
+  opacity: 0.5;
 }
 
-.text-center {
-  text-align: center;
+.listDB {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.roundedCardText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #e2e2e2;
+  border-radius: 50px;
+}
+
+.bottomBar {
+  padding: 10px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(219, 219, 219) !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(219, 219, 219) !important;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(219, 219, 219) !important;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    height: auto;
+  }
+}
+@media screen and (max-width: 375px) {
+  .roundedCardText {
+    width: 75px;
+    height: 75px;
+    font-size: 13px;
+  }
 }

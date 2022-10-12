@@ -61,16 +61,28 @@ class Database
         return self::$instance;
     }
 
-    public function fetch(string $table, int $limit, array $sqlParameters = null, array $jointure = null, string $anotherSql = '')
+    public function fetch(string $table, int $limit, array $sqlParameters, array $jointure = null, string $anotherSql = "", string $groupBy = "")
     {
         $results = [];
         if (!empty($sqlParameters) && !empty($jointure)) {
-            $stmt = $this->DB::table($table)
-                ->where($sqlParameters['name'], $sqlParameters['agrega'], $sqlParameters['value'])
-                ->leftjoin($jointure['table'], $jointure['firstColumn'], $jointure['agrega'], $jointure['secondColumn'])
-                ->select($this->DB::raw($anotherSql))
-                ->limit($limit)
-                ->get();
+            if (!empty($jointure[1])) {
+                $stmt = $this->DB::table($table)
+                    ->where($sqlParameters['name'], $sqlParameters['agrega'], $sqlParameters['value'])
+                    ->leftjoin($jointure[0]['table'], $jointure[0]['firstColumn'], $jointure[0]['agrega'], $jointure[0]['secondColumn'])
+                    ->leftjoin($jointure[1]['table'], $jointure[1]['firstColumn'], $jointure[1]['agrega'], $jointure[1]['secondColumn'])
+                    ->select($this->DB::raw($anotherSql))
+                    ->groupBy($groupBy)
+                    ->limit($limit)
+                    ->get();
+            } else {
+                $stmt = $this->DB::table($table)
+                    ->where($sqlParameters['name'], $sqlParameters['agrega'], $sqlParameters['value'])
+                    ->leftjoin($jointure['table'], $jointure['firstColumn'], $jointure['agrega'], $jointure['secondColumn'])
+                    ->select($this->DB::raw($anotherSql))
+                    ->groupBy($groupBy)
+                    ->limit($limit)
+                    ->get();
+            }
         } else if (!empty($sqlParameters)) {
             $stmt = $this->DB::table($table)
                 ->where($sqlParameters['name'], $sqlParameters['agrega'], $sqlParameters['value'])

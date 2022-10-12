@@ -1,0 +1,71 @@
+body,
+nav,
+ol {
+  background-color: rgb(225, 225, 225) !important;
+  font-family: Fira Sans;
+}
+
+img {
+  max-width: 100%;
+}
+
+.headerCard {
+  background-color: white;
+  padding: 20px;
+  border-radius: 3px;
+  margin: 20px 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.date_crea {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cardStat {
+  padding: 20px;
+  margin: 20px 20px;
+  border: none;
+  background-color: white;
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.card {
+  max-width: 500px;
+  padding: 20px;
+  margin: 20px 20px;
+  border: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.roundedCardText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #e2e2e2;
+  border-radius: 50px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(219, 219, 219) !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(219, 219, 219) !important;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(219, 219, 219) !important;
+}

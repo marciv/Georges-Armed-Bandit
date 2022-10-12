@@ -15,6 +15,8 @@ $router::get('/', 'Home', 'home');
 
 //Test
 $router::get('/tests', 'Test', 'home');
+$router::get('/tests/add', 'Test', 'add');
+
 $router::get('/test', 'Test', 'show');
 
 
