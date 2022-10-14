@@ -2,6 +2,7 @@
 
 use Georges\Framework\HttpRequest;
 use Georges\Framework\Router;
+use Illuminate\Http\Response;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -9,7 +10,8 @@ require __DIR__ . '/vendor/autoload.php';
 // var_dump($BanditTest->Get(6));
 
 $httpRequest = new HttpRequest();
-$router = new Router($httpRequest);
+$httpResponse = new Response();
+$router = new Router($httpRequest, $httpResponse);
 
 $router::get('/', 'Home', 'home');
 

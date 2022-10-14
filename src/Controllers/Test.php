@@ -13,16 +13,17 @@ class Test extends Controller
     {
         $params['name'] = "test5";
         $ModelsTest = new ModelsTest();
-        $testList = $ModelsTest->getList(10000, null, null, "");
+        $testList = $ModelsTest->getList(10000, [], null, "", "");
         $params['testList'] = $testList;
+        return $this->send();
 
         //Edit header/css/js
-        $view = new View();
-        $view::setNameHeader("Tests List");
-        $view::addCss("test/style.css");
+        // $view = new View();
+        // $view::setNameHeader("Tests List");
+        // $view::addCss("test/style.css");
 
-        self::setDirName("Test");
-        self::view('index', $params);
+        // self::setDirName("Test");
+        // self::view('index', $params);
     }
 
     public function show($params)
@@ -35,7 +36,7 @@ class Test extends Controller
         $sqlParameters =   ['name' => "test_id", 'agrega' => '=', 'value' => $params['test_id']];
         $jointure[0] = ['table' => 'goal', 'firstColumn' => 'variation.variation_id', 'agrega' => '=', 'secondColumn' => 'goal.variation_id'];
         $jointure[1] = ['table' => 'visit_log', 'firstColumn' => 'variation.variation_id', 'agrega' => '=', 'secondColumn' => 'visit_log.variation_id'];
-        $select = "count(goal.goal_id) as goalCount, count(visit_log.visit_log_id) as visitCount, variation.*";
+        $select = "count(goal.goal_id) as goalCount, count(visit_log.variation_id) as visitCount, variation.*";
         $groupBy = "variation.variation_id";
 
         $params['variations'] = $Variation->getList(10000, $sqlParameters, $jointure, $select, $groupBy);
