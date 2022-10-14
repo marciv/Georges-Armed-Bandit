@@ -22,6 +22,10 @@ $router::get('/tests/add', 'Test', 'add');
 $router::get('/test', 'Test', 'show');
 
 
+//HttpResponse
+$router::get('/response', 'Test', 'testResponse');
+
+
 
 
 $router::get('/redirect', 'Home', 'redirectPage');

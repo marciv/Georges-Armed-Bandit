@@ -30,7 +30,6 @@ class Controller
 
     public function view(string $viewName, array $_param = [])
     {
-        var_dump($this->send());
         View::renderTemplate(self::$dirName . "/$viewName.php", $_param);
     }
 

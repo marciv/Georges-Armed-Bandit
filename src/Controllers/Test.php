@@ -15,15 +15,14 @@ class Test extends Controller
         $ModelsTest = new ModelsTest();
         $testList = $ModelsTest->getList(10000, [], null, "", "");
         $params['testList'] = $testList;
-        return $this->send();
 
-        //Edit header/css/js
-        // $view = new View();
-        // $view::setNameHeader("Tests List");
-        // $view::addCss("test/style.css");
+        // Edit header/css/js
+        $view = new View();
+        $view::setNameHeader("Tests List");
+        $view::addCss("test/style.css");
 
-        // self::setDirName("Test");
-        // self::view('index', $params);
+        self::setDirName("Test");
+        self::view('index', $params);
     }
 
     public function show($params)
@@ -59,5 +58,10 @@ class Test extends Controller
         $view::addJs("main.js");
         self::setDirName("Test");
         self::view('add', $params);
+    }
+
+    public function testResponse()
+    {
+        return $this->send();
     }
 }
