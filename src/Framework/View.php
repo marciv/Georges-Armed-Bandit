@@ -117,7 +117,7 @@ class View
                     </head>
                     <body>
                         {{body}}
-                         {{js}}
+                        {{js}}
                     </body>
                 </html>";
     }
