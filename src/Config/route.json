@@ -1,22 +1,30 @@
-[{
-	"path" : "/",
-	"controller" : "Home",
-	"action" : "Home",
-	"method" : "GET",
-	"param" : []
-},
-{
-	"path" : "/login.*",
-	"controller" : "Home",
-	"action" : "Home",
-	"method" : "GET",
-	"param" : []
-},
-{
-	"path" : "/login",
-	"controller" : "Home",
-	"action" : "Home",
-	"method" : "POST",
-	"param" : []
-}
+[
+    {
+        "path": "/",
+        "controller": "Home",
+        "action": "Home",
+        "method": "GET",
+        "param": []
+    },
+    {
+        "path": "/login.*",
+        "controller": "Home",
+        "action": "Home",
+        "method": "GET",
+        "param": []
+    },
+    {
+        "path": "/login",
+        "controller": "Home",
+        "action": "Home",
+        "method": "POST",
+        "param": []
+    },
+    {
+        "path": "/example",
+        "controller": "ExampleController",
+        "action": "exampleAction",
+        "method": "GET",
+        "param": []
+    }
 ]

@@ -8,7 +8,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 $App = new Framework();
 
-$App::get('/', 'Home', 'home');
+$App::get('/example', 'ExampleController', 'exampleAction');
 
 $App->run();
 
