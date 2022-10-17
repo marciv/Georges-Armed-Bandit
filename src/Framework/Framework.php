@@ -24,8 +24,6 @@ class Framework
             $this->runMiddlewareChain($this->_httpRequest);
         }
 
-
-
         $this->findRoute();
         $this->_foundRoute->run($this->_httpRequest);
 
