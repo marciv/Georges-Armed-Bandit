@@ -1,29 +1,34 @@
 <?php
 
-use Georges\Framework\HttpRequest;
-use Georges\Framework\Router;
+use Georges\Framework\Framework;
+// use Georges\Framework\HttpRequest;
+// use Georges\Framework\Router;
 
 require __DIR__ . '/vendor/autoload.php';
+
+$App = new Framework();
+
+$App::get('/', 'Home', 'home');
+
+$App->run();
 
 // $BanditTest = new Test();
 // var_dump($BanditTest->Get(6));
 
-$httpRequest = new HttpRequest();
-$router = new Router($httpRequest);
+// $httpRequest = new HttpRequest();
+// $router = new Router($httpRequest);
 
-$router::get('/', 'Home', 'home');
+// $router::get('/', 'Home', 'home');
 
-//Test
-$router::get('/tests', 'Test', 'home');
-$router::get('/tests/add', 'Test', 'add');
+// //Test
+// $router::get('/tests', 'Test', 'home');
+// $router::get('/tests/add', 'Test', 'add');
 
-$router::get('/test', 'Test', 'show');
-
-
+// $router::get('/test', 'Test', 'show');
 
 
-$router::get('/redirect', 'Home', 'redirectPage');
-$router::get('/redirected', 'Home', 'redirectedHere');
+// $router::get('/redirect', 'Home', 'redirectPage');
+// $router::get('/redirected', 'Home', 'redirectedHere');
 
 
 // // Declare a custom middleware function
@@ -44,4 +49,4 @@ $router::get('/redirected', 'Home', 'redirectedHere');
 // $router::get('/', 'Home', 'home', ['prenom' => "marc"]);
 
 // exectue route by router found
-$router->run();
+// $router->run();
