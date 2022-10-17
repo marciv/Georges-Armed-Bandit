@@ -33,19 +33,19 @@ trait Router
     }
 
     public static function get(...$args){			
-        Router::addRoute('GET',$args);
+        self::addRoute('GET',$args);
     }
     public static function post(...$args){			
-        Router::addRoute('POST',$args);
+        self::addRoute('POST',$args);
     }
     public static function put(...$args){			
-        Router::addRoute('PUT',$args);
+        self::addRoute('PUT',$args);
     }
     public static function delete(...$args){			
-        Router::addRoute('DELETE',$args);
+        self::addRoute('DELETE',$args);
     }
     public static function all(...$args){			
-        Router::addRoute('ALL',$args);
+        self::addRoute('ALL',$args);
     }
 
     private function findRoute() {

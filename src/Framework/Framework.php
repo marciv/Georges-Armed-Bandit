@@ -22,15 +22,8 @@ class Framework
             $this->runMiddlewareChain($this->_httpRequest);
         }
 
-
-
         $this->findRoute();
-        echo '<pre>';
-
-        // print_r($this->_foundRoute);
-        // print_r(self::$middlewareChain);
-        
-        echo '</pre>';        
+        $this->_foundRoute->run($this->_httpRequest);
         return;
     }
 
