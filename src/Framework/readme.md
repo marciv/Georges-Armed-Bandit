@@ -90,8 +90,8 @@ return array(
         'middleware'=>[\Georges\Middlewares\ExampleMiddleWare1::class,\Georges\Middlewares\ExampleMiddleWare2:class]
     ],
     [
-        'path'=>"/ExampleURI",
-        'middleware'=>\Georges\Middlewares\ExampleMiddleWare3::class
+        'path'=>"/example",
+        'middleware'=>\Georges\Middlewares\ExampleMiddleWare::class
     ]
 );
 ```
@@ -99,9 +99,9 @@ return array(
 All your Middleware must contains **handle function** for call all next middleware
 
 ```
-class ExampleMiddleWare1 extends \Georges\Framework\Middleware{
+class ExampleMiddleWare extends \Georges\Framework\Middleware{
     function handle($httpRequest){
-        // echo  "ExampleMiddleWare1 run";
+        echo  "ExampleMiddleWare run";
         return parent::next($httpRequest);
     }
 }
