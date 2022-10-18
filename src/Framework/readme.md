@@ -181,3 +181,96 @@ In your **Controller and in your Action** add
 $view = new View();
 $view::addJs("example/main.js");
 ```
+
+## Basic Auth Example
+
+**Routing**
+
+```
+$App = new Framework();
+
+$App::get('/exampleHome', 'exampleHome', 'home');
+$App::get('/exampleLogin', 'exampleLogin', 'login');
+
+$App->run();
+```
+
+**Config/middlewares.php**
+
+```
+return
+    array(
+        [
+            'path' => "/example",
+            'middleware' => \Georges\Middlewares\ExampleMiddleware::class
+        ],
+        [
+            'path' => "/exampleHome",
+            'middleware' => \Georges\Middlewares\ExampleAuthMiddleware::class
+        ]
+    );
+```
+
+**ExampleAuthMiddleware**
+
+```
+class ExampleAuthMiddleware extends \Georges\Framework\Middleware
+{
+    function handle($httpRequest)
+    {
+         if ($httpRequest->getParams()['user'] == "admin" && $httpRequest->getParams()['password'] == "1234") {
+            $auth = true;
+        } else {
+            return redirect("/exampleLogin", $httpRequest->getParams());
+        }
+
+        return parent::next($httpRequest);
+    }
+}
+```
+
+**ExampleHomeController && ExampleLoginController**
+
+```
+class ExampleLogin extends Controller
+{
+    public function login($params)
+    {
+        self::setDirName("login");
+        return self::view('exampleLogin', $params);
+    }
+}
+```
+
+```
+class Home extends Controller
+{
+    public function home($params)
+    {
+        $params['name'] = 'Marc';
+        $params['age'] = '12 ans';
+        $params['civ'] = 'M';
+        self::setDirName("Home");
+        self::view('exampleHome', $params);
+    }
+}
+```
+
+**Views**
+
+```
+//Home View
+<h1>Hello {{civ}}.{{name}}</h1>
+<p>You have {{age}} years old.</p>
+```
+
+```
+//Login View
+<h1>You are not connected</h1>
+
+<form action="exampleHome" method="GET">
+    <input name="user" type="text" placeholder="User">
+    <input name="password" type="password" placeholder="Password">
+    <button>Submit</button>
+</form>
+```

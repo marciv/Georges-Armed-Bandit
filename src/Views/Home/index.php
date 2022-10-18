@@ -1,13 +1,2 @@
-<p>{{age}}</p>
-
-
-<h1>Hello
-    {{name}}
-</h1>
-
-<p>
-    {{name}}
-</p>
-
-
-<p>{{civ}}</p>
+<h1>Hello {{civ}}.{{name}}</h1>
+<p>You have {{age}} years old.</p>

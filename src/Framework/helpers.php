@@ -20,16 +20,16 @@ if (!function_exists('_getSchemeRequest')) {
 }
 
 if (!function_exists('redirect')) {
-    function redirect($path, $method = null, array $params)
+    function redirect($path, array $params)
     {
         $hostURL = _getHostUrl();
         $requestScheme = _getSchemeRequest();
         if (!headers_sent()) {
             // echo 'php redirection';
-            header('Location: ' . $requestScheme . $hostURL . "/" . $path . "?" . http_build_query($params), false);
+            header('Location: ' . $requestScheme . $hostURL . "/" . $_SERVER['SCRIPT_NAME'] . $path . "?" . http_build_query($params), false);
         } else {
             // echo 'js redirection';
-            echo '<script>window.location="' . $requestScheme . $hostURL . "/" . $path . "?" . http_build_query($params) . '"</script>';
+            echo '<script>window.location="' . $requestScheme . $hostURL . "/" . $_SERVER['SCRIPT_NAME'] . $path . "?" . http_build_query($params) . '"</script>';
         }
         exit;
     }

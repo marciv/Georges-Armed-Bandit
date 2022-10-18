@@ -10,6 +10,10 @@ $App = new Framework();
 
 $App::get('/example', 'ExampleController', 'exampleAction');
 
+$App::get('/exampleHome', 'ExampleHome', 'home');
+
+$App::get('/exampleLogin', 'ExampleLogin', 'login');
+
 $App->run();
 
 // $BanditTest = new Test();
