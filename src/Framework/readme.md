@@ -18,7 +18,7 @@ $App->run();
 
 ## Routing
 
-You will define all of the routes for your application in the Config/route.json file.
+You will **define all of the routes** for your application in the **Config/route.json file**.
 
 ```
 {
@@ -30,7 +30,7 @@ You will define all of the routes for your application in the Config/route.json 
 }
 ```
 
-The most basic routes simply accept a **URI**, **Controller**, **Method**
+Or generate **routes dynamically**. The most basic routes simply accept a **URI**, **Controller**, **Method**
 
 ```
 $App::get('/', 'ExampleController', 'exampleAction');
@@ -71,13 +71,41 @@ class ExampleController extends Controller
 {
     public function exampleAction($params)
     {
-        $params['example'] = "This is example"
+        $params['example'] = "This is example";
+		//Or like this
+		$example = "This is example";
 		...
     }
 }
 ```
 
 ## Middleware
+
+In **Config/middlewares.php file** define your Middleware.
+
+```
+return array(
+    [
+        'path'=>"/",
+        'middleware'=>[\Georges\Middlewares\ExampleMiddleWare1::class,\Georges\Middlewares\ExampleMiddleWare2:class]
+    ],
+    [
+        'path'=>"/ExampleURI",
+        'middleware'=>\Georges\Middlewares\ExampleMiddleWare3::class
+    ]
+);
+```
+
+All your Middleware must contains **handle function** for call all next middleware
+
+```
+class ExampleMiddleWare1 extends \Georges\Framework\Middleware{
+    function handle($httpRequest){
+        // echo  "ExampleMiddleWare1 run";
+        return parent::next($httpRequest);
+    }
+}
+```
 
 ## View
 
@@ -114,6 +142,8 @@ class ExampleController extends Controller
 <h1>Example</h1>
 
 <p>{{example}}</p>
+
+<p><?= $example ?></p>
 ```
 
 **Add Custom CSS File in view**
@@ -130,6 +160,7 @@ Create directory in **Views/**
 In your **Controller and in your Action** add
 
 ```
+$view = new View();
 $view::addCss("example/style.css");
 ```
 
@@ -147,5 +178,6 @@ Create directory in **Views/**
 In your **Controller and in your Action** add
 
 ```
+$view = new View();
 $view::addJs("example/main.js");
 ```

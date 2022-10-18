@@ -61,7 +61,7 @@ class Database
         return self::$instance;
     }
 
-    public function fetch(string $table, int $limit, array $sqlParameters, array $jointure = null, string $anotherSql = "", string $groupBy = "")
+    public function fetch(string $table, int $limit, array $sqlParameters = null, array $jointure = null, string $anotherSql = "", string $groupBy = "")
     {
         $results = [];
         if (!empty($sqlParameters) && !empty($jointure)) {

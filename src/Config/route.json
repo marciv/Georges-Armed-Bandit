@@ -19,12 +19,5 @@
         "action": "Home",
         "method": "POST",
         "param": []
-    },
-    {
-        "path": "/example",
-        "controller": "ExampleController",
-        "action": "exampleAction",
-        "method": "GET",
-        "param": []
     }
 ]
