@@ -6,12 +6,10 @@ class ExampleAuthMiddleware extends \Georges\Framework\Middleware
 {
     function handle($httpRequest)
     {
-        if ($httpRequest->getParams()['user'] == "admin" && $httpRequest->getParams()['password'] == "1234") {
-            $auth = true;
+        if (isset($_SESSION['auth']) && $_SESSION['auth'] == true) {
         } else {
-            return redirect("/exampleLogin", $httpRequest->getParams());
+            redirect("/exampleLogin");
         }
-
         return parent::next($httpRequest);
     }
 }

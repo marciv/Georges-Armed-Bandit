@@ -187,6 +187,7 @@ $view::addJs("example/main.js");
 **Routing**
 
 ```
+session_start();
 $App = new Framework();
 
 $App::get('/exampleHome', 'exampleHome', 'home');
@@ -201,12 +202,12 @@ $App->run();
 return
     array(
         [
-            'path' => "/example",
-            'middleware' => \Georges\Middlewares\ExampleMiddleware::class
-        ],
-        [
             'path' => "/exampleHome",
             'middleware' => \Georges\Middlewares\ExampleAuthMiddleware::class
+        ],
+        [
+            'path' => "/exampleLogin",
+            'middleware' => \Georges\Middlewares\ExampleSetAuthMiddleware::class
         ]
     );
 ```
@@ -218,12 +219,34 @@ class ExampleAuthMiddleware extends \Georges\Framework\Middleware
 {
     function handle($httpRequest)
     {
-         if ($httpRequest->getParams()['user'] == "admin" && $httpRequest->getParams()['password'] == "1234") {
-            $auth = true;
+        if (isset($_SESSION['auth']) && $_SESSION['auth'] == true) {
         } else {
-            return redirect("/exampleLogin", $httpRequest->getParams());
+            redirect("/exampleLogin");
+        }
+        return parent::next($httpRequest);
+    }
+}
+```
+
+**ExampleSetAuthMiddleware**
+
+```
+class ExampleSetAuthMiddleware extends \Georges\Framework\Middleware
+{
+    function handle($httpRequest)
+    {
+        if ($httpRequest->getMethod() == 'POST') {
+            if ($_POST['user'] == "admin" && $_POST['password'] == "1234") {
+                $_SESSION['auth'] = true;
+                redirect("/exampleHome");
+            } else {
+                echo "Mauvais identifiant de connexion";
+            }
         }
 
+        if (isset($_SESSION['auth']) && $_SESSION['auth'] = true) {
+            redirect("/exampleHome");
+        }
         return parent::next($httpRequest);
     }
 }
@@ -268,7 +291,7 @@ class Home extends Controller
 //Login View
 <h1>You are not connected</h1>
 
-<form action="exampleHome" method="GET">
+<form action="#" method="POST">
     <input name="user" type="text" placeholder="User">
     <input name="password" type="password" placeholder="Password">
     <button>Submit</button>

@@ -6,13 +6,13 @@ use Georges\Framework\Framework;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$App = new Framework();
+session_start();
 
-$App::get('/example', 'ExampleController', 'exampleAction');
+$App = new Framework();
 
 $App::get('/exampleHome', 'ExampleHome', 'home');
 
-$App::get('/exampleLogin', 'ExampleLogin', 'login');
+$App::all('/exampleLogin', 'ExampleLogin', 'login');
 
 $App->run();
 
