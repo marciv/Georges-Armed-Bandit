@@ -9,6 +9,7 @@ class ExampleSetAuthMiddleware extends \Georges\Framework\Middleware
         if ($httpRequest->getMethod() == 'POST') {
             if ($_POST['user'] == "admin" && $_POST['password'] == "1234") {
                 $_SESSION['auth'] = true;
+                $_SESSION['user'] = $_POST['user'];
                 redirect("/exampleHome");
             } else {
                 echo "Mauvais identifiant de connexion";
