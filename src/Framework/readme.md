@@ -265,7 +265,7 @@ class ExampleSetAuthMiddleware extends \Georges\Framework\Middleware
                 $_SESSION['auth'] = true;
                 redirect("/exampleHome");
             } else {
-                echo "Mauvais identifiant de connexion";
+                flash('errorLogin', 'Wrong username or password... !', 'danger');
             }
         }
 

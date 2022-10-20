@@ -12,7 +12,7 @@ class ExampleSetAuthMiddleware extends \Georges\Framework\Middleware
                 $_SESSION['user'] = $_POST['user'];
                 redirect("/exampleHome");
             } else {
-                echo "Mauvais identifiant de connexion";
+                flash('errorLogin', 'Wrong login, can you retry ?', 'danger');
             }
         }
 
