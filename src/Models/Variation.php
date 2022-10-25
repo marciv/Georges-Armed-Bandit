@@ -21,12 +21,6 @@ class Variation  extends Model
             "type": "int",
             "default":null
         },
-        "createdAt": {
-            "field": "created_at",
-            "fieldType": "timestamp",
-            "type": "string",
-            "default":""
-        },
         "name": {
             "field": "name",
             "fieldType": "string",

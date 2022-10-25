@@ -3,6 +3,8 @@
 namespace Georges\Framework;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Redirect;
+
 
 class HttpRequest
 {

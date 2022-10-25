@@ -83,6 +83,7 @@ class Model
         }
         $sqlParameters =   ['name' => $this->tableIndex, 'agrega' => '=', 'value' => $id];
         $results = $this->connection->fetch($this->tableName, 1, $sqlParameters);
+
         if (!empty($results[0])) {
             return $this->hydrate($results[0]);
         } else {
@@ -92,9 +93,9 @@ class Model
     }
 
 
-    public function getList(int $limit = 10000, array $sqlParameters = null, array $jointure = null, string $anotherSql = "", string $groupBy = "")
+    public function getList(int $limit = 10000, array $sqlParameters = null)
     {
-        $results = $this->connection->fetch($this->tableName, $limit, $sqlParameters, $jointure, $anotherSql, $groupBy);
+        $results = $this->connection->fetch($this->tableName, $limit, $sqlParameters);
         if (!empty($results)) {
             return $results;
         } else {

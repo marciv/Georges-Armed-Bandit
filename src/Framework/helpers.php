@@ -1,5 +1,8 @@
 <?php
 
+use Georges\Framework\Framework;
+use Georges\Framework\Route;
+
 /**
  * Create a flash message
  *
@@ -99,43 +102,41 @@ function flash(string $name = '', string $message = '', string $type = ''): void
     }
 }
 
+// /**
+//  * Redirect
+//  */
+// if (!function_exists('_getHostUrl')) {
+//     function _getHostUrl()
+//     {
+//         return (!empty($_SERVER['HTTP_X_FORWARDED_HOST'])) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : $_SERVER['HTTP_HOST'];
+//     }
+// }
+// if (!function_exists('_getSchemeRequest')) {
+//     function _getSchemeRequest()
+//     {
+//         $requestScheme = "https://";
+//         if ($_SERVER['HTTP_X_FORWARDED_HOST'] == "localhost") {
+//             $requestScheme = "http://";
+//         } else if ($_SERVER['HTTP_HOST'] == "localhost") {
+//             $requestScheme = "http://";
+//         }
+//         return $requestScheme;
+//     }
+// }
 
-
-/**
- * Redirect
- */
-if (!function_exists('_getHostUrl')) {
-    function _getHostUrl()
-    {
-        return (!empty($_SERVER['HTTP_X_FORWARDED_HOST'])) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : $_SERVER['HTTP_HOST'];
-    }
-}
-if (!function_exists('_getSchemeRequest')) {
-    function _getSchemeRequest()
-    {
-        $requestScheme = "https://";
-        if ($_SERVER['HTTP_X_FORWARDED_HOST'] == "localhost") {
-            $requestScheme = "http://";
-        } else if ($_SERVER['HTTP_HOST'] == "localhost") {
-            $requestScheme = "http://";
-        }
-        return $requestScheme;
-    }
-}
-
-if (!function_exists('redirect')) {
-    function redirect($path, array $params = null)
-    {
-        $hostURL = _getHostUrl();
-        $requestScheme = _getSchemeRequest();
-        $params = !empty($params) ? "?" . http_build_query($params) : "";
-        if (!headers_sent()) {
-            // echo 'php redirection';
-            header('Location: ' . $requestScheme . $hostURL . "/" . $_SERVER['SCRIPT_NAME'] . $path . $params, false);
-        } else {
-            // echo 'js redirection';
-            echo '<script>window.location="' . $requestScheme . $hostURL . "/" . $_SERVER['SCRIPT_NAME'] . $path . $params . '"</script>';
-        }
-        exit;
-    }
-}
+// if (!function_exists('redirect')) {
+//     function redirect($path, array $params = null)
+//     {
+//         $hostURL = _getHostUrl();
+//         $requestScheme = _getSchemeRequest();
+//         $params = !empty($params) ? "?" . http_build_query($params) : "";
+//         if (!headers_sent()) {
+//             // echo 'php redirection';
+//             header('Location: ' . $requestScheme . $hostURL . "/" . $_SERVER['SCRIPT_NAME'] . $path . $params, false);
+//         } else {
+//             // echo 'js redirection';
+//             echo '<script>window.location="' . $requestScheme . $hostURL . "/" . $_SERVER['SCRIPT_NAME'] . $path . $params . '"</script>';
+//         }
+//         exit;
+//     }
+// }

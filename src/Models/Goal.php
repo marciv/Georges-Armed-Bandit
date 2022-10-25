@@ -27,18 +27,6 @@ class Goal extends Model
             "type": "string",
             "default":""
         },
-        "name": {
-            "field": "name",
-            "fieldType": "string",
-            "type": "string",
-            "default":""
-        },
-        "description": {
-            "field": "description",
-            "fieldType": "string",
-            "type": "string",
-            "default":""
-        },
         "triggerEvent": {
             "field": "trigger_event",
             "fieldType": "json",
