@@ -4,28 +4,11 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  font-family: "Poppins";
 }
 
 a {
   text-decoration: none;
-  color: black;
-}
-
-a:hover {
-  color: black;
-}
-.main-george {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 25px;
-  border-radius: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 20px 50px;
-}
-
-.main-george h1 {
-  font-size: 35px;
-  font-family: Nunito;
 }
 
 .card {
@@ -61,6 +44,9 @@ a:hover {
 
 .bottomBar {
   padding: 10px;
+}
+.bottomBar a {
+  color: white;
 }
 
 ::placeholder {

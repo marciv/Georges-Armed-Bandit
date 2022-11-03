@@ -3,18 +3,17 @@
 namespace  Georges\Controllers;
 
 use Georges\Framework\Controller;
-use Georges\Models\Test as ModelsTest;
 use Georges\Framework\View;
-use Georges\Models\Variation;
+use Georges\Models\BanditTest;
 
 class Test extends Controller
 {
     public function home($params)
     {
-        $params['name'] = "test5";
-        $ModelsTest = new ModelsTest();
-        $testList = $ModelsTest->getList(10000, null, null, "");
-        $params['testList'] = $testList;
+        $Tests = new BanditTest();
+        $testList = $Tests->searchBanditTest("/", null, "on");
+        $params['banditTestList'] = $testList;
+
 
         //Edit header/css/js
         $view = new View();
@@ -27,18 +26,11 @@ class Test extends Controller
 
     public function show($params)
     {
-        // $ModelsTest = new ModelsTest();
-        // $Variation = new Variation();
+        $ModelBanditTest = new BanditTest();
+        $banditTest = $ModelBanditTest->getBanditTestById($params['test_id']);
+        $params['banditTest'] = $banditTest;
 
-        // $params['test'] = $ModelsTest->get($params['test_id']);
-
-        // $sqlParameters =   ['name' => "test_id", 'agrega' => '=', 'value' => $params['test_id']];
-        // $jointure[0] = ['table' => 'goal', 'firstColumn' => 'variation.variation_id', 'agrega' => '=', 'secondColumn' => 'goal.variation_id'];
-        // $jointure[1] = ['table' => 'visit_log', 'firstColumn' => 'variation.variation_id', 'agrega' => '=', 'secondColumn' => 'visit_log.variation_id'];
-        // $select = "count(goal.goal_id) as goalCount, count(visit_log.visit_log_id) as visitCount, variation.*";
-        // $groupBy = "variation.variation_id";
-
-        // $params['variations'] = $Variation->getList(10000, $sqlParameters, $jointure, $select, $groupBy);
+        // var_dump($banditTest);
 
         //Edit header/css/js
         $view = new View();

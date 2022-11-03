@@ -1,34 +1,37 @@
 <?php
 
 use Georges\Framework\Framework;
-use Georges\Models\BanditTest;
+// use Georges\Models\BanditTest;
 
 // use Georges\Framework\HttpRequest;
 // use Georges\Framework\Router;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$bandit = new BanditTest();
+// $bandit = new BanditTest();
 
-$bandit = $bandit->searchBanditTest("fen/lan/99", ["id" => "6357a5ddb99dc6a0c666c17e"], "on");
+// $bandit = $bandit->searchBanditTest("fen/lan/99", ["id" => "6357a5ddb99dc6a0c666c17e"], "on");
 
 
-var_dump($bandit);
+// var_dump($bandit);
 // $bandit->save();
 
-echo '<pre>';
+// echo '<pre>';
 // var_dump($bandit->delete());
-echo '</pre>';
+// echo '</pre>';
 
-// session_start();
+session_start();
 
-// $App = new Framework();
+$App = new Framework();
 
 // $App::get('/exampleHome', 'ExampleHome', 'home');
 
-// $App::all('/exampleLogin', 'ExampleLogin', 'login');
+$App::all('/exampleLogin', 'ExampleLogin', 'login');
+$App::get('/tests', 'Test', 'home');
+$App::get('/test', 'Test', 'show');
 
-// $App->run();
+
+$App->run();
 
 // $BanditTest = new Test();
 // var_dump($BanditTest->Get(6));

@@ -12,6 +12,7 @@ class ExampleSetAuthMiddleware extends \Georges\Framework\Middleware
             if ($_POST['user'] == "admin" && $_POST['password'] == "1234") {
                 $_SESSION['auth'] = true;
                 $_SESSION['user'] = $_POST['user'];
+                Redirect::with($httpRequest, ["new_params" => "LOOK my new params"]);
                 Redirect::route("/exampleHome", $httpRequest);
             } else {
                 flash('errorLogin', 'Wrong login, can you retry ?', 'danger');

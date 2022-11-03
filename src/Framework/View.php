@@ -21,6 +21,7 @@ class View
     public static function getTemplate(string $template, array $args = [])
     {
         $filePath = __DIR__ . "/../Views/" . $template;
+
         if (file_exists($filePath)) {
             extract($args);
             ob_start();
@@ -122,6 +123,14 @@ class View
                          {{js}}
                          <!-- JavaScript Bundle with Popper -->
                         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3' crossorigin='anonymous'></script>
+                        <script src='https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'></script>
+                        <script>
+                            WebFont.load({
+                                google: {
+                                    families: ['Poppins']
+                                }
+                            });
+                        </script>
                     </body>
                 </html>";
     }

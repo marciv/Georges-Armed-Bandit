@@ -2,20 +2,20 @@
     <nav style="--bs-breadcrumb-divider: >" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="tests">Accueil</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{name}}</li>
+            <li class="breadcrumb-item active" aria-current="page"><?= $banditTest->test->name ?></li>
         </ol>
     </nav>
 </div>
 
 <div class="container">
     <div class="headerCard">
-        <h1 class="text-center">{{name}}</h1>
-        <div class="date_crea text-center">Created At: {{startDate}}</div>
+        <h1 class="text-center"><?= $banditTest->test->name ?></h1>
+        <div class="date_crea text-center">Created At: <?= $banditTest->test->startDate ?></div>
         <div class="d-flex justify-content-between">
             <section class="d-flex align-items-center">
                 <div class="card rounded text-center">
-                    <span class=" text-info"><?= $test->statut == "on" ? "En cours" : "En pause"; ?></span>
-                    <span class="discovery_rate">Discovery rate : <b>{{discoveryRate}}</b></span>
+                    <span class=" text-info"><?= $banditTest->test->statut == "on" ? "En cours" : "En pause"; ?></span>
+                    <span class="discovery_rate">Discovery rate : <b><?= $banditTest->test->discoveryRate ?></b></span>
                 </div>
             </section>
             <div class="dropdown">
@@ -30,32 +30,73 @@
             </div>
         </div>
         <div class="description">
-            {{description}}
+            <?= $banditTest->test->description ?>
         </div>
     </div>
 
     <div class="d-flex align-items-center justify-content-center flex-wrap">
-
         <?php
-        foreach ($variations as $variation) {
+        foreach ($banditTest->variations as $variation) {
+            $countGoal = 0;
+            $countVisit = 0;
+            $countVisitMobile = 0;
+            $countVisitDesktop = 0;
+            $countVisitTablet = 0;
+
+            foreach ($banditTest->goals as $goal) {
+                if ($goal->variationId == $variation->variationId) {
+                    $countGoal++;
+                }
+            }
+
+            foreach ($banditTest->visits as $visit) {
+                if ($visit->variationId == $variation->variationId) {
+                    $countVisit++;
+                    if ($visit->device == "computer") {
+                        $countVisitDesktop++;
+                    } else if ($visit->device == "mobile") {
+                        $countVisitMobile++;
+                    } else if ($visit->device == "tablet") {
+                        $countVisitTablet++;
+                    }
+                }
+            }
         ?>
-            <div class="card col-12 col-sm-6 <?= $variation['statut'] == "on" ? '' : 'disabled' ?>">
+            <div class="card col-12 col-sm-6 <?= $variation->statut == "on" ? '' : 'disabled' ?>">
                 <div class="d-flex align-items-center justify-content-center">
-                    <h2><?= $variation['name']; ?></h2>
+                    <h2><?= $variation->name; ?></h2>
                 </div>
-                <h6 class="text-center text-muted"><?= $variation['uri_regex']; ?></h6>
+                <h6 class="text-center text-muted"><?= $variation->uriRegex; ?></h6>
                 <div class="row justify-content-center align-items-center">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-12 col-sm-6">
                             <h6 class="mt-5 text-center">Nombre de visiteur</h6>
                             <div class="roundedCardText mx-auto">
-                                <div><b><?= $variation['visitCount']; ?></b></div>
+                                <div><b><?= $countVisit ?></b></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <h6 class="mt-5 text-center">Mobile</h6>
+                            <div class="roundedCardText mx-auto">
+                                <div><b><?= $countVisitMobile ?></b></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <h6 class="mt-5 text-center">PC</h6>
+                            <div class="roundedCardText mx-auto">
+                                <div><b><?= $countVisitDesktop ?></b></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <h6 class="mt-5 text-center">Tablette</h6>
+                            <div class="roundedCardText mx-auto">
+                                <div><b><?= $countVisitTablet ?></b></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
                             <h6 class="mt-5 text-center">Conversion total</h6>
                             <div class="roundedCardText mx-auto">
-                                <div><b><?= $variation['goalCount']; ?></b></div>
+                                <div><b><?= $countGoal ?></b></div>
                             </div>
                         </div>
 
@@ -64,7 +105,7 @@
 
                             <div class="roundedCardText text-white bg-primary mx-auto">
                                 <div>
-                                    <b><?php echo @round(($variation['goalCount'] / $variation['visitCount']) * 100, 1); ?>%</b>
+                                    <b><?= @round(($countGoal / $countVisit) * 100, 1); ?>%</b>
                                 </div>
                             </div>
                         </div>

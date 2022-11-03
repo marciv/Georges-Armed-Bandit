@@ -41,6 +41,14 @@ class HttpRequest
         return $this->_param;
     }
 
+    public function setParams(array $params)
+    {
+        foreach ($params as $oneParams => $value) {
+            $this->_param[$oneParams] = $value;
+        }
+        return;
+    }
+
     public function setRoute($route)
     {
         $this->_route = $route;
@@ -49,19 +57,17 @@ class HttpRequest
     public function bindParam($method = "ALL")
     {
         switch ($method) {
-        case "GET":
-        case "DELETE":
-            $this->_param = $this->request->query();
-        break;
-        case "POST":
-        case "PUT":
-            $this->_param = $this->request->post();
-        break;
-        case "ALL":
-            $this->_param = $this->request->all();
-        break;                                  
+            case "GET":
+            case "DELETE":
+                $this->_param = $this->request->query();
+                break;
+            case "POST":
+            case "PUT":
+                $this->_param = $this->request->post();
+                break;
+            case "ALL":
+                $this->_param = $this->request->all();
+                break;
         }
     }
-
-
 }
