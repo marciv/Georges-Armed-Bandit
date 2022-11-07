@@ -1,5 +1,5 @@
 <div class="container">
-    <nav style="--bs-breadcrumb-divider: >" aria-label="breadcrumb">
+    <nav class="mt-2" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="tests">Accueil</a></li>
             <li class="breadcrumb-item active" aria-current="page"><?= $banditTest->test->name ?></li>
@@ -15,7 +15,10 @@
             <section class="d-flex align-items-center">
                 <div class="card rounded text-center">
                     <span class=" text-info"><?= $banditTest->test->statut == "on" ? "En cours" : "En pause"; ?></span>
-                    <span class="discovery_rate">Discovery rate : <b><?= $banditTest->test->discoveryRate ?></b></span>
+                    <span class="discovery_rate">Discovery rate : <b><?= $banditTest->test->discoveryRate * 100 ?>%</b></span>
+                </div>
+                <div class="card rounded text-center">
+
                 </div>
             </section>
             <div class="dropdown">
@@ -102,7 +105,6 @@
 
                         <div class="col-12 col-sm-6">
                             <h6 class="mt-5 text-center">Taux de conversion</h6>
-
                             <div class="roundedCardText text-white bg-primary mx-auto">
                                 <div>
                                     <b><?= @round(($countGoal / $countVisit) * 100, 1); ?>%</b>

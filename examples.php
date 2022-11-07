@@ -29,6 +29,8 @@ $App = new Framework();
 $App::all('/exampleLogin', 'ExampleLogin', 'login');
 $App::get('/tests', 'Test', 'home');
 $App::get('/test', 'Test', 'show');
+$App::get('/tests/add', 'Test', 'add');
+
 
 
 $App->run();

@@ -66,7 +66,7 @@ class BanditTest
         return $this;
     }
 
-    public function searchBanditTest(string $uri = "/", array $filter = null, string $statut = "all")
+    public function searchBanditTest(string $uri = "/", array $filter = null, string $statut = "on")
     {
         $listBanditTest = [];
 

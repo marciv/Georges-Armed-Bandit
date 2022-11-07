@@ -2,8 +2,6 @@
 
 namespace Georges\Framework;
 
-use Exception;
-
 class Redirect
 {
 
