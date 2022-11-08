@@ -74,25 +74,25 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Total number of visitors</h6>
+                            <h6 class="mt-5 text-center"><b>Total</b> number <b>visitors</b></h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countVisit ?></b></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Number of visitors mobile</h6>
+                            <h6 class="mt-5 text-center">Number visitors <b>mobile</b></h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countVisitMobile ?></b></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Number of visitors PC</h6>
+                            <h6 class="mt-5 text-center">Number visitors <b>PC</b></h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countVisitDesktop ?></b></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Number of visitors Tablette</h6>
+                            <h6 class="mt-5 text-center">Number visitors <b>Tablet</b></h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countVisitTablet ?></b></div>
                             </div>
