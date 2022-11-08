@@ -33,6 +33,7 @@
             </div>
         </div>
         <div class="description">
+            <p><u>Description</u> :</p>
             <?= $banditTest->test->description ?>
         </div>
     </div>
@@ -73,38 +74,38 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Nombre de visiteur</h6>
+                            <h6 class="mt-5 text-center">Total number of visitors</h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countVisit ?></b></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Mobile</h6>
+                            <h6 class="mt-5 text-center">Number of visitors mobile</h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countVisitMobile ?></b></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">PC</h6>
+                            <h6 class="mt-5 text-center">Number of visitors PC</h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countVisitDesktop ?></b></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Tablette</h6>
+                            <h6 class="mt-5 text-center">Number of visitors Tablette</h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countVisitTablet ?></b></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Conversion total</h6>
+                            <h6 class="mt-5 text-center">Total conversion</h6>
                             <div class="roundedCardText mx-auto">
                                 <div><b><?= $countGoal ?></b></div>
                             </div>
                         </div>
 
                         <div class="col-12 col-sm-6">
-                            <h6 class="mt-5 text-center">Taux de conversion</h6>
+                            <h6 class="mt-5 text-center">Conversion rate</h6>
                             <div class="roundedCardText text-white bg-primary mx-auto">
                                 <div>
                                     <b><?= @round(($countGoal / $countVisit) * 100, 1); ?>%</b>

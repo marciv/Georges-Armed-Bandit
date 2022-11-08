@@ -6,7 +6,7 @@
                     <div class="cadre-text p-3 row">
                         <div class="col-12 col-md-4 mt-2">
                             <p><u>Create At</u> : <b><?= $banditTest->test->startDate ?></b></p>
-                            <p><u>Statut</u> : <?= $banditTest->test->statut == 'on' ? "<b class='text-primary'>En cours</b>" : "<b class='text-warning'>En pause</b>" ?></p>
+                            <p><u>Statut</u> : <?= $banditTest->test->statut == 'on' ? "<b class='text-primary'>In progress</b>" : "<b class='text-warning'>In pause</b>" ?></p>
                             <p><u>Discovery Rate</u> : <b><?= $banditTest->test->discoveryRate * 100 ?>%</b></p>
                             <div class="d-flex justify-content-evenly">
                                 <a href="#" class="btn btn-outline-danger">Delete</a>

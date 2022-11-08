@@ -31,8 +31,6 @@ $App::get('/tests', 'Test', 'home');
 $App::get('/test', 'Test', 'show');
 $App::get('/tests/add', 'Test', 'add');
 
-
-
 $App->run();
 
 // $BanditTest = new Test();
